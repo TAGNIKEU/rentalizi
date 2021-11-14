@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="rentalizi_immeuble_tree_view" model="ir.ui.view">
+            <field name="name">rentalizi.immeuble.tree.view</field>
+            <field name="model">rentalizi.immeuble</field>
+            <field name="arch" type="xml">
+                <tree string="Liste des immeubles">
+                    <field name="nom"/>
+                    <field name="adresse"/>
+                    <field name="pays_id"/>
+                    <field name="ville_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_immeubles_rentalizi" model="ir.actions.act_window">
+            <field name="name">Immeubles</field>
+            <field name="res_model">rentalizi.immeuble</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

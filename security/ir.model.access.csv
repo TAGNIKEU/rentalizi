@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rentalizi_immeuble,access_rentalizi_immeuble,model_rentalizi_immeuble,base.group_user,1,1,1,1
+access_rentalizi_ville,access_rentalizi_ville,model_rentalizi_ville,base.group_user,1,1,1,1
+access_rentalizi_lot,access_rentalizi_lot,model_rentalizi_lot,base.group_user,1,1,1,1

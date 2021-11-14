@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="rentalizi_lot_tree_view" model="ir.ui.view">
+            <field name="name">rentalizi.lot.tree.view</field>
+            <field name="model">rentalizi.lot</field>
+            <field name="arch" type="xml">
+                <tree string="Liste des lots">
+                    <field name="nom"/>
+                    <field name="type"/>
+                    <field name="superficie"/>
+                    <field name="nbre_pièces"/>
+                    <field name="salles_bain"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_lots_rentalizi" model="ir.actions.act_window">
+            <field name="name">Lots</field>
+            <field name="res_model">rentalizi.lot</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
