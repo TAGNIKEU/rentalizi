@@ -8,9 +8,125 @@
                     <field name="nom"/>
                     <field name="type"/>
                     <field name="superficie"/>
-                    <field name="nbre_pièces"/>
+                    <field name="nbre_pieces"/>
                     <field name="salles_bain"/>
                 </tree>
+            </field>
+        </record>
+        <record id="rentalizi_lot_form_view" model="ir.ui.view">
+            <field name="name">rentalizi.lot.form.view</field>
+            <field name="model">rentalizi.lot</field>
+            <field name="arch" type="xml">
+                <form string="Enregistrement des lots">
+                    <sheet>
+                        <h1>
+                            <group>
+                                <field name="nom"/>
+                            </group>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="type"/>
+                                <field name="adresse"/>
+                                <field name="adresse_2"/>
+                                <field name="batiment"/>
+                                <field name="escalier"/>
+                                <field name="etage"/>
+                            </group>
+                            <group>
+                                <field name="numero"/>
+                                <field name="ville"/>
+                                <field name="code_postal"/>
+                                <field name="region"/>
+                                <field name="pays"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <group>
+                                        <field name="superficie"/>
+                                        <field name="nbre_pieces"/>
+                                        <field name="nbre_chambres"/>
+                                        <field name="salles_bain"/>
+                                        <field name="annee_construction"/>
+                                    </group>
+                                    <group>
+                                        <field name="description"/>
+                                        <field name="notes"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Informations complémentaires">
+                                <group>
+                                    <group>
+                                        <field name="type_habitat"/>
+                                        <field name="regime_juridique"/>
+                                        <field name="bien_meuble"/>
+                                        <field name="fumeurs_acceptes"/>
+                                        <field name="animaux_acceptes"/>
+                                        <field name="complements"/>
+                                    </group>
+                                    <group>
+                                        <field name="parking"/>
+                                        <field name="autres_dependances"/>
+                                        <field name="cave"/>
+                                        <field name="lot"/>
+                                        <field name="milliemes"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Références cadastrales">
+                                <group>
+                                    <group>
+                                        <field name="feuille_cadastrale"/>
+                                        <field name="parcelle_cadastrale"/>
+                                    </group>
+                                    <group>
+                                        <field name="categorie_cadastrale"/>
+                                        <field name="valeur_locative"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Informations locatives">
+                                <group>
+                                    <group>
+                                        <field name="type_location"/>
+                                        <field name="loyer_hc"/>
+                                        <field name="charges"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Informations financières">
+                                <group>
+                                    <group>
+                                        <field name="taxe_habitation"/>
+                                        <field name="taxe_foncière"/>
+                                        <field name="prix_acquisition"/>
+                                    </group>
+                                    <group>
+                                        <field name="frais_acquisition"/>
+                                        <field name="date_acquisition"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Centre d'impôts">
+                                <group>
+                                    <group>
+                                        <field name="nom_centre_impots"/>
+                                        <field name="adresse_centre_impots"/>
+                                        <field name="adresse_centre_impots_2"/>
+                                    </group>
+                                    <group>
+                                        <field name="code_postal_centre_impots"/>
+                                        <field name="ville_centre_impots"/>
+                                        <field name="notes_centre_impots"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
             </field>
         </record>
         <record id="action_lots_rentalizi" model="ir.actions.act_window">
