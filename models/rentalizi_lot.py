@@ -15,7 +15,7 @@ class Lot(models.Model):
                              ('hotel_particulier', 'Hôtel particulier'), ('local_professionnel', 'Local professionnel'),
                              ('loft', 'Loft'), ('maison', 'Maison'), ('parking', 'Parking'),
                              ('mobile_home', 'Mobile home'), ('studio', 'Studio'), ('terrain', 'Terrain'),
-                             ('autre', 'Autre')])
+                             ('autre', 'Autre')], string="Type")
     # Adresse
     adresse = fields.Char(string="Adresse")
     adresse_2 = fields.Char(string="Adresse 2")

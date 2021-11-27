@@ -2,7 +2,7 @@
     <data>
         <menuitem id="rentalizi_menu_principal" name="Rentalizi"/>
         <menuitem id="rentalizi_biens" name="Biens" parent="rentalizi_menu_principal"/>
-        <menuitem id="rentalizi_locataires" name="Locataires" parent="rentalizi_menu_principal" action=""/>
+        <menuitem id="rentalizi_locataires" name="Locataires" parent="rentalizi_menu_principal" action="action_locataires_rentalizi"/>
         <menuitem id="rentalizi_locations" name="Locations" parent="rentalizi_menu_principal" action=""/>
         <menuitem id="rentalizi_immeubles" name="Immeubles" parent="rentalizi_biens" action="action_immeubles_rentalizi"/>
         <menuitem id="rentalizi_lots" name="Lots" parent="rentalizi_biens" action="action_lots_rentalizi"/>

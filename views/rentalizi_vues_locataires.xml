@@ -1,0 +1,153 @@
+<odoo>
+    <data>
+        <record id="rentalizi_locataires_tree_view" model="ir.ui.view">
+            <field name="name">rentalizi.locataires.tree.view</field>
+            <field name="model">rentalizi.locataires</field>
+            <field name="arch" type="xml">
+                <tree string="Locataires">
+                    <field name="nom_locataire"/>
+                    <field name="prenom_locataire"/>
+                    <field name="type_locataire"/>
+                    <field name="email_locataire"/>
+                    <field name="telephone_locataire"/>
+                </tree>
+            </field>
+        </record>
+        <record id="rentalizi_locataires_form_view" model="ir.ui.view">
+            <field name="name">rentalizi.locataires.form.view</field>
+            <field name="model">rentalizi.locataires</field>
+            <field name="arch" type="xml">
+                <form string="Locataire">
+                    <sheet>
+                        <group>
+                            <field name="type_locataire"/>
+                        </group>
+                        <group attrs="{'invisible': [('type_locataire','=','societe')]}">
+                            <group>
+                                <field name="civilite_locataire"/>
+                                <field name="nom_locataire"/>
+                                <field name="prenom_locataire"/>
+                            </group>
+                            <group>
+                                <field name="prenom_locataire_2"/>
+                                <field name="date_naissance_locataire"/>
+                                <field name="lieu_naissance_locataire"/>
+                            </group>
+                        </group>
+                        <group attrs="{'invisible': [('type_locataire','=','particulier')]}">
+                            <group>
+                                <field name="nom_societe"/>
+                                <field name="numero_tva"/>
+                                <field name="rcs_siren"/>
+                            </group>
+                            <group>
+                                <field name="capital_societe"/>
+                                <field name="profession_societe"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Identité">
+                                <group>
+                                    <group>
+                                        <field name="type_identite"/>
+                                        <field name="numero_piece_identite"/>
+                                        <field name="expiration_piece_identite"/>
+                                    </group>
+                                    <group>
+                                        <field name="photo_locataire"/>
+                                        <field name="fichier_piece_identite"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Informations de contact">
+                                <group>
+                                    <group>
+                                        <field name="email_locataire"/>
+                                        <field name="invitation"/>
+                                    </group>
+                                    <group>
+                                        <field name="email_locataire_2"/>
+                                        <field name="telephone_locataire"/>
+                                        <field name="telephone_locataire_2"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Adresse">
+                                <group>
+                                    <group>
+                                        <field name="adresse_locataire"/>
+                                        <field name="adresse_locataire_2"/>
+                                        <field name="ville_locataire"/>
+                                    </group>
+                                    <group>
+                                        <field name="code_postal_locataire"/>
+                                        <field name="region_locataire"/>
+                                        <field name="pays_locataire"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Situation professionnelle">
+                                <group>
+                                    <group>
+                                        <field name="profession_locataire"/>
+                                        <field name="revenus_locataire"/>
+                                        <field name="situation_pro"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Adresse professionnelle">
+                                <group>
+                                    <group>
+                                        <field name="employeur"/>
+                                        <field name="adresse_pro"/>
+                                        <field name="ville_pro"/>
+                                    </group>
+                                    <group>
+                                        <field name="code_postal_pro"/>
+                                        <field name="region_pro"/>
+                                        <field name="pays_pro"/>
+                                        <field name="telephone_pro"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Coordonnées bancaires">
+                                <group>
+                                    <group>
+                                        <field name="nom_banque"/>
+                                        <field name="adresse_banque"/>
+                                        <field name="ville_banque"/>
+                                        <field name="code_postal_banque"/>
+                                        <field name="pays_banque"/>
+                                        <field name="code_banque"/>
+                                    </group>
+                                    <group>
+                                        <field name="code_guichet"/>
+                                        <field name="numero_compte"/>
+                                        <field name="cle_rib"/>
+                                        <field name="iban"/>
+                                        <field name="swift_bic"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Informations complémentaires">
+                                <group>
+                                    <group>
+                                        <field name="commentaires"/>
+                                    </group>
+                                    <group>
+                                        <field name="nouvelle_adresse"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_locataires_rentalizi" model="ir.actions.act_window">
+            <field name="name">Locataires</field>
+            <field name="res_model">rentalizi.locataires</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -3,3 +3,4 @@ access_rentalizi_immeuble,access_rentalizi_immeuble,model_rentalizi_immeuble,bas
 access_rentalizi_ville,access_rentalizi_ville,model_rentalizi_ville,base.group_user,1,1,1,1
 access_rentalizi_lot,access_rentalizi_lot,model_rentalizi_lot,base.group_user,1,1,1,1
 access_rentalizi_complements,access_rentalizi_complements,model_rentalizi_complements,base.group_user,1,1,1,1
+access_rentalizi_locataires,access_rentalizi_locataires,model_rentalizi_locataires,base.group_user,1,1,1,1
