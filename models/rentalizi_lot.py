@@ -17,16 +17,11 @@ class Lot(models.Model):
                              ('mobile_home', 'Mobile home'), ('studio', 'Studio'), ('terrain', 'Terrain'),
                              ('autre', 'Autre')], string="Type")
     # Adresse
-    adresse = fields.Char(string="Adresse")
-    adresse_2 = fields.Char(string="Adresse 2")
+    adresse_id = fields.Many2one("rentalizi.adresse", string="Adresse")
     batiment = fields.Char(string="Bâtiment")
     escalier = fields.Char(string="Escalier")
     etage = fields.Char(string="Etage")
     numero = fields.Integer(string="Numéro")
-    ville = fields.Many2one("rentalizi.ville", string="Ville")
-    code_postal = fields.Char(string="Code postal")
-    region = fields.Char(string="Région")
-    pays = fields.Many2one("res.country", string="Pays")
     # Description
     superficie = fields.Integer(string='Superficie(m²)')
     nbre_pieces = fields.Integer(string='Nombre de pièces')
@@ -66,9 +61,6 @@ class Lot(models.Model):
     date_acquisition = fields.Date(string="Date d'acquisition")
     # Centre d'impôts
     nom_centre_impots = fields.Char(string="Nom du centre")
-    adresse_centre_impots = fields.Char(string="Adresse du centre")
-    adresse_centre_impots_2 = fields.Char(string="Seconde adresse")
-    code_postal_centre_impots = fields.Char(string="Code postal du centre")
-    ville_centre_impots = fields.Char(string="Ville du centre")
+    adresse_centre_impots = fields.Many2one("rentalizi.adresse", string="Adresse du centre")
     notes_centre_impots = fields.Text(string="Quelques notes")
 

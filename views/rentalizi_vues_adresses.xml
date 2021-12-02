@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record id="action_adresses_rentalizi" model="ir.actions.act_window">
+            <field name="name">Adresses</field>
+            <field name="res_model">rentalizi.adresse</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

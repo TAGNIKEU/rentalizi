@@ -8,7 +8,7 @@ class Immeuble(models.Model):
     _rec_name = "nom"
 
     nom = fields.Char(string="Identifiant", required=True)
-    adresse = fields.Char(string="Adresse", required=True)
+    adresse = fields.Many2one("rentalizi.adresse", required=True)
     adresse_2 = fields.Char(string="Adresse 2")
     ville_id = fields.Many2one("rentalizi.ville", string="Ville")
     code_postal = fields.Char(string="Code postal")

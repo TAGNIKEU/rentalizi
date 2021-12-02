@@ -13,12 +13,12 @@ class Locataires(models.Model):
                                           string="Civilité")
     prenom_locataire = fields.Char(string="Prénom")
     prenom_locataire_2 = fields.Char(string="Prénom 2")
-    nom_locataire = fields.Char(string="Nom", required=True)
+    nom_locataire = fields.Char(string="Nom")
     date_naissance_locataire = fields.Date(string="Date de naissance")
     lieu_naissance_locataire = fields.Char(string="Lieu de naissance")
 
     # Informations personnelles dans le cas d'une société ou autre - informations sur la société
-    nom_societe = fields.Char(string="Nom de la société", required=True)
+    nom_societe = fields.Char(string="Nom de la société")
     numero_tva = fields.Char(string="Numéro TVA")
     rcs_siren = fields.Char(string="RCS/SIREN")
     capital_societe = fields.Integer(string="Capital")
@@ -43,12 +43,7 @@ class Locataires(models.Model):
     telephone_locataire_2 = fields.Char(string="Téléphone 2")
 
     # Adresse
-    adresse_locataire = fields.Char(string="Adresse")
-    adresse_locataire_2 = fields.Char(string="Adresse 2")
-    ville_locataire = fields.Many2one("rentalizi.ville", string="Ville")
-    code_postal_locataire = fields.Char(string="Code postal")
-    region_locataire = fields.Char(string="Région")
-    pays_locataire = fields.Many2one("res.country", string="Pays")
+    adresse_locataire_id = fields.Many2one("rentalizi.adresse", string="Adresse")
 
     # Situation professionnelle
     profession_locataire = fields.Char(string="Profession locataire")
@@ -57,11 +52,7 @@ class Locataires(models.Model):
 
     # Adresse professionnelle
     employeur = fields.Char(string="Employeur")
-    adresse_pro = fields.Char(string="Adresse professionnelle")
-    ville_pro = fields.Many2one("rentalizi.ville", string="Ville")
-    code_postal_pro = fields.Char(string="Code postal")
-    region_pro = fields.Char(string="Région")
-    pays_pro = fields.Many2one("res.country", string="Pays")
+    adresse_pro_id = fields.Many2one("rentalizi.adresse", string="Adresse professionnelle")
     telephone_pro = fields.Char(string="Téléphone professionnel")
 
     # Informations complémentaires
@@ -70,10 +61,7 @@ class Locataires(models.Model):
 
     # Coordonnées bancaires
     nom_banque = fields.Char(string="Banque")
-    adresse_banque = fields.Char(string="Adresse banque")
-    ville_banque = fields.Many2one("rentalizi.ville", string="Ville de la banque")
-    code_postal_banque = fields.Char(string="Code postal banque")
-    pays_banque = fields.Many2one("res.country", string="Pays")
+    adresse_banque_id = fields.Many2one("rentalizi.adresse", string="Adresse banque")
     code_banque = fields.Char(string="Code banque")
     code_guichet = fields.Char(string="Code guichet")
     numero_compte = fields.Char(string="Numéro du compte")

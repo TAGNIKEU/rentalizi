@@ -27,18 +27,13 @@
                         <group>
                             <group>
                                 <field name="type"/>
-                                <field name="adresse"/>
-                                <field name="adresse_2"/>
+                                <field name="adresse_id"/>
                                 <field name="batiment"/>
-                                <field name="escalier"/>
-                                <field name="etage"/>
                             </group>
                             <group>
+                                <field name="escalier"/>
+                                <field name="etage"/>
                                 <field name="numero"/>
-                                <field name="ville"/>
-                                <field name="code_postal"/>
-                                <field name="region"/>
-                                <field name="pays"/>
                             </group>
                         </group>
                         <notebook>
@@ -115,11 +110,6 @@
                                     <group>
                                         <field name="nom_centre_impots"/>
                                         <field name="adresse_centre_impots"/>
-                                        <field name="adresse_centre_impots_2"/>
-                                    </group>
-                                    <group>
-                                        <field name="code_postal_centre_impots"/>
-                                        <field name="ville_centre_impots"/>
                                         <field name="notes_centre_impots"/>
                                     </group>
                                 </group>
