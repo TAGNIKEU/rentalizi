@@ -26,6 +26,7 @@
 
     # always loaded
     'data': [
+        'views/rentalizi_vues_locations.xml',
         'views/rentalizi_vues_adresses.xml',
         'views/rentalizi_vues_locataires.xml',
         'views/rentalizi_complements.xml',

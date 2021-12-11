@@ -8,7 +8,8 @@ class Adresse(models.Model):
 
     adresse = fields.Char(string="Adresse")
     adresse_2 = fields.Char(string="Adresse 2")
-    ville = fields.Many2one("rentalizi.ville", string="Ville")
+    ville_id = fields.Many2one("rentalizi.ville", string="Ville")
     code_postal = fields.Char(string="Code postal")
     region = fields.Char(string="Région")
     pays = fields.Many2one("res.country", string="Pays")
+

@@ -21,7 +21,12 @@
                     <sheet>
                         <h1>
                             <group>
-                                <field name="nom"/>
+                                <group>
+                                    <field name="nom"/>
+                                </group>
+                                <group>
+                                    <field name="immeuble_id"/>
+                                </group>
                             </group>
                         </h1>
                         <group>
@@ -55,8 +60,8 @@
                             <page string="Informations complémentaires">
                                 <group>
                                     <group>
-                                        <field name="type_habitat"/>
-                                        <field name="regime_juridique"/>
+                                        <field name="type_habitat" widget="radio" options="{'horizontal': true}"/>
+                                        <field name="regime_juridique" widget="radio" options="{'horizontal': true}"/>
                                         <field name="bien_meuble"/>
                                         <field name="fumeurs_acceptes"/>
                                         <field name="animaux_acceptes"/>

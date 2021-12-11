@@ -5,3 +5,4 @@ access_rentalizi_lot,access_rentalizi_lot,model_rentalizi_lot,base.group_user,1,
 access_rentalizi_complements,access_rentalizi_complements,model_rentalizi_complements,base.group_user,1,1,1,1
 access_rentalizi_locataires,access_rentalizi_locataires,model_rentalizi_locataires,base.group_user,1,1,1,1
 access_rentalizi_adresse,access_rentalizi_adresse,model_rentalizi_adresse,base.group_user,1,1,1,1
+access_rentalizi_locations,access_rentalizi_locations,model_rentalizi_locations,base.group_user,1,1,1,1

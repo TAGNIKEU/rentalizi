@@ -6,9 +6,7 @@
             <field name="arch" type="xml">
                 <tree string="Liste des immeubles">
                     <field name="nom"/>
-                    <field name="adresse"/>
-                    <field name="pays_id"/>
-                    <field name="ville_id"/>
+                    <field name="adresse_id"/>
                 </tree>
             </field>
         </record>
@@ -24,7 +22,7 @@
                             </group>
                         </h1>
                         <group>
-                            <field name="adresse"/>
+                            <field name="adresse_id"/>
                         </group>
                         <notebook>
                             <page string="Description">

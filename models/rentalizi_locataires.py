@@ -28,8 +28,8 @@ class Locataires(models.Model):
     photo_locataire = fields.Binary(string="Photo")
 
     # Pièce d'identité
-    type_identite = fields.Selection([('carte_identite', '''Carte d'identité'''), ('passport', 'Passport')],
-                                     string="Type de pièce")
+    type_identite = fields.Selection([('carte_identite', '''Carte d'identité'''), ('passport', 'Passport'),
+                                      ('titre_sejour', 'Titre de séjour')], string="Type de pièce")
     numero_piece_identite = fields.Char(string="Numéro de la pièce")
     expiration_piece_identite = fields.Date(string="Date d'expitation")
     fichier_piece_identite = fields.Binary(string="Fichier")
@@ -68,6 +68,7 @@ class Locataires(models.Model):
     cle_rib = fields.Char(string="Clé RIB")
     iban = fields.Char(string="IBAN")
     swift_bic = fields.Char(string="SWIFT/BIC")
+    location_id = fields.Many2one("rentalizi.locations", string="Location")
 
 
 

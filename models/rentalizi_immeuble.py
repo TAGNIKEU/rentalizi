@@ -8,12 +8,7 @@ class Immeuble(models.Model):
     _rec_name = "nom"
 
     nom = fields.Char(string="Identifiant", required=True)
-    adresse = fields.Many2one("rentalizi.adresse", required=True)
-    adresse_2 = fields.Char(string="Adresse 2")
-    ville_id = fields.Many2one("rentalizi.ville", string="Ville")
-    code_postal = fields.Char(string="Code postal")
-    region = fields.Char(string="Région")
-    pays_id = fields.Many2one("res.country", string="Pays", required=True)
+    adresse_id = fields.Many2one("rentalizi.adresse", string="Adresse")
     superficie = fields.Integer(string="Superficie(m²)")
     annee_construction = fields.Date(string="Année de construction")
     complements = fields.Many2many("rentalizi.complements", string="Parties et équipements")
