@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <record id="rentalizi_paiement_tree_view" model="ir.ui.view">
+            <field name="name">rentalizi.paiement.tree.view</field>
+            <field name="model">rentalizi.paiement</field>
+            <field name="arch" type="xml">
+                <tree string="Paiements" editable="bottom">
+                    <field name="montant"/>
+                    <field name="taxe"/>
+                    <field name="type"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record id="rentalizi_paiement_form_view" model="ir.ui.view">
+            <field name="name">rentalizi.paiement.form.view</field>
+            <field name="model">rentalizi.paiement</field>
+            <field name="arch" type="xml">
+                <form string="Paiement">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="montant"/>
+                                <field name="taxe"/>
+                            </group>
+                            <group>
+                                <field name="type"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_paiement_rentalizi" model="ir.actions.act_window">
+            <field name="name">Autre paiement</field>
+            <field name="res_model">rentalizi.paiement</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

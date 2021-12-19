@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class Lot(models.Model):
     _name = 'rentalizi.lot'
     _description = 'Lots de différents types contenus dans un immeuble'
+    _rec_name = 'nom'
 
     # Informations générales
     nom = fields.Char(string='Nom du lot')
@@ -48,7 +49,7 @@ class Lot(models.Model):
     parcelle_cadastrale = fields.Char(string="Parcelle cadastrale")
     categorie_cadastrale = fields.Char(string="Catégorie cadastrale")
     valeur_locative = fields.Float(string="Valeur locative cadastrale")
-    # Informations locatives
+    # les informations locatives
     devise_id = fields.Many2one("res.currency", default=lambda self: self.env.ref('base.main_company').currency_id)
     type_location = fields.Selection([('meuble', 'Meublé'), ('vide', 'Vide'), ('saisonniere', 'Saisonnière')])
     loyer_hc = fields.Monetary(string="Loyer HC", currency_field="devise_id")

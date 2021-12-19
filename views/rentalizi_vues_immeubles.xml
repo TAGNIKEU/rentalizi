@@ -7,6 +7,8 @@
                 <tree string="Liste des immeubles">
                     <field name="nom"/>
                     <field name="adresse_id"/>
+                    <field name="ville_id"/>
+                    <field name="code_postal"/>
                 </tree>
             </field>
         </record>
@@ -23,6 +25,8 @@
                         </h1>
                         <group>
                             <field name="adresse_id"/>
+                            <field name="ville_id"/>
+                            <field name="code_postal"/>
                         </group>
                         <notebook>
                             <page string="Description">
@@ -51,7 +55,7 @@
                             </page>
                             <page string="Informations complémentaires">
                                 <group>
-                                    <field name="complements"/>
+                                    <field name="complements" widget="many2many_checkboxes"/>
                                 </group>
                             </page>
                             <page string="Lots">

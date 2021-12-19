@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="rentalizi_complements_tree_view" model="ir.ui.view">
+            <field name="name">rentalizi.complements.tree.view</field>
+            <field name="model">rentalizi.complements</field>
+            <field name="arch" type="xml">
+                <tree string="Informations complémentaires">
+                    <field name="designation"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_complements_rentalizi" model="ir.actions.act_window">
+            <field name="name">Informations complémentaires</field>
+            <field name="res_model">rentalizi.complements</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

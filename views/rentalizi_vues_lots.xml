@@ -10,6 +10,7 @@
                     <field name="superficie"/>
                     <field name="nbre_pieces"/>
                     <field name="salles_bain"/>
+                    <field name="immeuble_id"/>
                 </tree>
             </field>
         </record>

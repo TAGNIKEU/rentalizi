@@ -19,7 +19,7 @@ class Locations(models.Model):
                                     ('residence_secondaire', 'Résidence secondaire du locataire'),
                                     ('exclusion', '''Le locataire est autorisé à exercer son activité professionnelle, 
                                     à l'exclusion, cependant, de toute activité commerciale, 
-                                    artisanale ou industrielle''')], string="Utilisation du bien")
+                                    artisanale ou industrielle''')], string="Utilisation du bien", default="residence_principale")
     activite_exercee = fields.Char(string="Activité exercée dans les lieux")
     debut_bail = fields.Date(string="Début du bail", required=True)
     fin_bail = fields.Date(string="Fin du bail")
@@ -51,15 +51,13 @@ class Locations(models.Model):
     charges = fields.Float(string="Charges")
     taxe_charges = fields.Float(string="Taxe sur les charges")
     type_charges = fields.Selection([('provision_charges', 'Provision pour charges'),
-                                     ('forfait_charges', 'Forfait pour charges')])
+                                     ('forfait_charges', 'Forfait pour charges')], string="Type de charges",
+                                    default="provision_charges")
     description_charges = fields.Text(string="Description de la charge")
     loyer_ttc = fields.Float(string="Loyer charges comprises", required=True)
     # Autres paiements: Autres paiements exceptionnels tels que le ménage, parking etc. Ces paiements figureront sur
     # chaque quittance et s'ajoutent au Loyer.
-    montant_paiement = fields.Float(string="Montant")
-    taxe_paiement = fields.Float(string="Taxe sur le paiement")
-    type_paiement = fields.Selection([('charge', 'Charge'), ('loyer', 'Loyer')])
-    description_paiement = fields.Text(string="Description du paiement")
+    autre_paiement_ids = fields.One2many("rentalizi.paiement", "location_id", string="Autre paiement")
     # Dépôt de garantie:
     depot_garantie = fields.Float(string="Dépôt de garantie", required=True)
     # Allocations logement: Renseigner ici les aides telles que la CAF, l'APL, qui vous sont versées automatiquement.

@@ -20,3 +20,5 @@ class Immeuble(models.Model):
     description = fields.Text(string="Description")
     notes = fields.Text(string="Notes")
     lot_ids = fields.One2many("rentalizi.lot", "nom", string="Lots")
+    ville_id = fields.Many2one("rentalizi.ville", related="adresse_id.ville_id")
+    code_postal = fields.Char(related="adresse_id.code_postal")
