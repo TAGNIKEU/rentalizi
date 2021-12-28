@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class Locations(models.Model):
     _name = "rentalizi.locations"
     _description = "Relations entre locataires et lots"
+    _rec_name = "identifiant"
 
     bien = fields.Many2one("rentalizi.lot", string="Bien loué", required=True)
     etat_location = fields.Selection([('active', 'Active'), ('inactive', 'Inactive')], string="Etat de la location")
@@ -71,13 +72,16 @@ class Locations(models.Model):
     solde_locataire = fields.Float(string="Loyer prépayé/Solde")
     # Révision du loyer
     revision_loyer_selon = fields.Selection([('indice_reference_loyer', 'Indice de référence des loyers'),
-                                             ('pourcentage_convevu_hausse', 'Pourcentage convenu à la hausse')])
+                                             ('pourcentage_convevu_hausse', 'Pourcentage convenu à la hausse')],
+                                            default="indice_reference_loyer", string="Révision du loyer selon")
     indice_référence = fields.Selection([('irl', 'IRL'), ('ilc', 'ILC'), ('icc', 'ICC'), ('ilat', 'ILAT'),
-                                         ('indice_sante', 'Indice de santé')], string="Indice de référence")
+                                         ('indice_sante', 'Indice de santé')], string="Indice de référence",
+                                        default="irl")
     # Partie à revoir
     trimestre = fields.Selection([('trimestre_4_2022', 'Trimestre 4'), ('trimestre_3_2022', 'Trimestre 3'),
                                   ('trimestre_2_2022', 'Trimestre 2'), ('trimestre_1_2022', 'Trimestre 1')],
-                                 string="Trimestre")
+                                 string="Trimestre", default="trimestre_3_2022")
+    pourcentage = fields.Float(string="Pourcentage")
     # Si vous activez cette option, le site révisera automatiquement, chaque année à la date anniversaire, le montant
     # du loyer. Vous recevrez un email de notification. Cette option est disponible uniquement pour les indices IRL
     # et ILC.
@@ -99,14 +103,27 @@ class Locations(models.Model):
     description_complement = fields.Text(string="Description du complément")
     bail_termine_depuis_18_mois = fields.Selection([('oui', 'Oui'), ('non', 'Non')],
                                                    string="Le bail du précédent locataire est-il terminé depuis "
-                                                          "plus de 18 mois ? ")
+                                                          "plus de 18 mois ? ", default="oui")
     # Montant du dernier loyer acquitté par le précédent locataire.
     dernier_loyer_applique = fields.Float(string="Dernier loyer appliqué")
     date_versement = fields.Date(string="Date de versement")
     derniere_revision = fields.Date(string="Dernière révision")
     loyer_objet_reevaluation = fields.Selection([('oui', 'Oui'), ('non', 'Non')], string="Le loyer fait-il l'objet "
-                                                                                         "d'une réévaluation? ")
+                                                                                         "d'une réévaluation? ",
+                                                default="non")
+    montant_hausse_mensuelle = fields.Float(string="Montant de la hausse de loyer mensuelle")
+    modalite_application_annuelle = fields.Selection([('par_tiers', 'Par tiers'), ('par_sixieme', 'Par sixième')],
+                                                     string="Modalité d'application annuelle de la hausse")
     locataires_ids = fields.One2many("rentalizi.locataires", "location_id", string="Locataires")
+    # Informations complémentaires
+    montant_travaux_proprietaire = fields.Float(string="Montant")
+    description_travaux_proprietaire = fields.Text(string="Description")
+    montant_travaux_locataire = fields.Float(string="Montant")
+    description_travaux_locataire = fields.Text(string="Description")
+    conditions_particuliere = fields.Text(string="Conditions particulières")
+    clauses_particuliere = fields.Text(string="Clauses particulières")
+    commentaires = fields.Text(string="commentaires")
+
 
 
 

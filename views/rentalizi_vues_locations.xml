@@ -10,7 +10,6 @@
                     <field name="locataires_ids"/>
                     <field name="loyer_hc"/>
                     <field name="solde_locataire"/>
-                    <field name="autre_paiement_ids"/>
                 </tree>
             </field>
         </record>
@@ -50,22 +49,117 @@
                                     <group>
                                         <field name="loyer_hc"/>
                                         <field name="taxe_hc"/>
+                                        <field name="loyer_ttc"/>
                                     </group>
-                                    <group>
-                                        <field name="autre_paiement_ids"/>
-                                    </group>
-                                </group>
-                                <group>
                                     <group>
                                         <field name="charges"/>
                                         <field name="taxe_charges"/>
+                                        <field name="type_charges" widget="radio"/>
+                                        <field name="description_charges" attrs="{'invisible': [('type_charges','=','provision_charges')]}"/>
                                     </group>
                                 </group>
                                 <group>
                                     <group>
-                                        <field name="type_charges" widget="radio"/>
-                                        <field name="description_charges" attrs="{'invisible': [('type_charges','=','provision_charges')]}"/>
+                                        <field name="depot_garantie"/>
+                                        <field name="paiement_caf_apl"/>
                                     </group>
+                                    <group>
+                                        <label for="frais_retard"/>
+                                            <div>
+                                                <field name="frais_retard" class="oe_inline"/>
+                                                <field name="type_prelevement" class="oe_inline"/>
+                                            </div>
+                                        <field name="solde_locataire"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="autre_paiement_ids"/>
+                                </group>
+                            </page>
+                            <page string="Révision de loyer">
+                                <group>
+                                    <group>
+                                        <field name="revision_loyer_selon" widget="radio"/>
+                                        <label for="indice_référence" attrs="{'invisible': [('revision_loyer_selon','=','pourcentage_convevu_hausse')]}"/>
+                                        <div attrs="{'invisible': [('revision_loyer_selon','=','pourcentage_convevu_hausse')]}">
+                                            <field name="indice_référence" class="oe_inline"/>
+                                            <field name="trimestre" class="oe_inline"/>
+                                        </div>
+                                        <field name="pourcentage" attrs="{'invisible': [('revision_loyer_selon','=','indice_reference_loyer')]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="revision_auto"/>
+                                        <field name="periode_revision"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Encadrement des loyers">
+                                <group>
+                                    <group>
+                                        <field name="loyer_majore_fixe_arrete_prefectoral" widget="radio"/>
+                                    </group>
+                                    <group>
+                                        <field name="evolution_loyer_plafonnee_irl" widget="radio"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="loyer_reference"/>
+                                        <field name="loyer_majore"/>
+                                    </group>
+                                    <group>
+                                        <field name="complement_loyer"/>
+                                        <field name="description_complement"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <group>
+                                            <field name="bail_termine_depuis_18_mois" widget="radio"/>
+                                        </group>
+                                        <group attrs="{'invisible': [('bail_termine_depuis_18_mois','=','oui')]}">
+                                            <field name="dernier_loyer_applique"/>
+                                            <field name="date_versement"/>
+                                            <field name="derniere_revision"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="loyer_objet_reevaluation" widget="radio"/>
+                                        </group>
+                                        <group attrs="{'invisible': [('loyer_objet_reevaluation','=','non')]}">
+                                            <field name="montant_hausse_mensuelle"/>
+                                            <field name="modalite_application_annuelle"/>
+                                        </group>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Locataires">
+                                <group>
+                                    <field name="locataires_ids"/>
+                                </group>
+                            </page>
+                            <page string="Travaux propriétaire">
+                                <group>
+                                    <group>
+                                        <field name="montant_travaux_proprietaire"/>
+                                        <field name="description_travaux_proprietaire"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Travaux locataire">
+                                <group>
+                                    <group>
+                                        <field name="montant_travaux_locataire"/>
+                                        <field name="description_travaux_locataire"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Conditions particulières et commentaires">
+                                <group>
+                                    <field name="conditions_particuliere"/>
+                                    <field name="clauses_particuliere"/>
+                                    <field name="commentaires"/>
                                 </group>
                             </page>
                         </notebook>
