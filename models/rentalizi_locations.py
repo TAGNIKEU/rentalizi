@@ -49,7 +49,7 @@ class Locations(models.Model):
     # Loyer
     loyer_hc = fields.Float(string="Loyer hors charges", required=True)
     taxe_hc = fields.Float(string="Taxe sur le loyer")
-    charges = fields.Float(string="Charges")
+    charges_loyer = fields.Float(string="Charges")
     taxe_charges = fields.Float(string="Taxe sur les charges")
     type_charges = fields.Selection([('provision_charges', 'Provision pour charges'),
                                      ('forfait_charges', 'Forfait pour charges')], string="Type de charges",
@@ -118,12 +118,34 @@ class Locations(models.Model):
     # Informations complémentaires
     montant_travaux_proprietaire = fields.Float(string="Montant")
     description_travaux_proprietaire = fields.Text(string="Description")
+    document_travaux_priprietaire = fields.Binary(string="Document propriétaire")
     montant_travaux_locataire = fields.Float(string="Montant")
     description_travaux_locataire = fields.Text(string="Description")
+    document_travaux_locataire = fields.Binary(string="Document locataire")
     conditions_particuliere = fields.Text(string="Conditions particulières")
     clauses_particuliere = fields.Text(string="Clauses particulières")
     commentaires = fields.Text(string="commentaires")
-
+    # Assurance
+    assurance_ids = fields.One2many("rentalizi.assurance", "location_id", string="Assurance")
+    # Documents
+    document_ids = fields.One2many("rentalizi.document", "location_id", string="Documents")
+    # Quittance
+    loyer_prorata = fields.Boolean(string="Cocher la case en cas de premier loyer au prorata")
+    date_fin_periode = fields.Date(string="La date de fin de période pour la 1ère quittance")
+    adresse_quittancement_autre = fields.Boolean(string="Cocher si l'adresse de quittancement est autre que l'adresse du bien loué")
+    adresse_quittancement = fields.Text(string="Adresse de quittancement")
+    titre_document = fields.Selection([('quittance', 'Quittance'), ('facture', 'Facture')], string="Titre du document", default="quittance")
+    numerotation = fields.Boolean(string="Numérotation")  # Activer / désactiver la numérotation automatique du document
+    avis_deuxieme_page = fields.Boolean(string="Avis en deuxième page")  # Générer l'avis d'échéance pour le mois suivant en deuxième page de la quittance du mois en cours.
+    texte_quittance = fields.Text(string="Texte pour la quittance")  # Texte à afficher automatiquement en bas de la Quittance
+    texte_avis_echeance = fields.Text(string="Texte pour l'avis d'échéance")  # Texte à afficher automatiquement en bas de l'Avis d'échéance
+    # Autres réglages
+    report_solde_locataire = fields.Selection([('manuel', 'Manuel'), ('automatique', 'Automatque')], string="Report du solde locataire", default="manuel")
+        # En cas de report Automatique, à chaque nouveau paiement de loyer généré dans la rubrique Finances le système modifiera l’échéance. Le montant sera augmenté/diminué par rapport à la somme reportée.
+    notification_quittance_dispo = fields.Boolean(string="Recevoir une notification dès que la Quittance / Avis est disponible en téléchargement")
+    notification_locataire_quittance = fields.Boolean(string="Notifier le(s) locataire(s) dès que la Quittance / Avis est disponible en téléchargement")
+    email_rappel = fields.Boolean(string="Envoyer un email de rappel 6 et 3 mois avant l’échéance du contrat")
+    notification_locataire_echeance = fields.Boolean(string="Notifier le(s) locataire(s) 3 mois avant l’échéance du contrat")
 
 
 

@@ -7,3 +7,5 @@ access_rentalizi_locataires,access_rentalizi_locataires,model_rentalizi_locatair
 access_rentalizi_adresse,access_rentalizi_adresse,model_rentalizi_adresse,base.group_user,1,1,1,1
 access_rentalizi_locations,access_rentalizi_locations,model_rentalizi_locations,base.group_user,1,1,1,1
 access_rentalizi_paiement,access_rentalizi_paiement,model_rentalizi_paiement,base.group_user,1,1,1,1
+access_rentalizi_assurance,access_rentalizi_assurance,model_rentalizi_assurance,base.group_user,1,1,1,1
+access_rentalizi_document,access_rentalizi_document,model_rentalizi_document,base.group_user,1,1,1,1

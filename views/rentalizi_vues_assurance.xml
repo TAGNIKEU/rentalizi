@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="rentalizi_assurance_tree_view" model="ir.ui.view">
+            <field name="name">rentalizi.assurance.tree.view</field>
+            <field name="model">rentalizi.assurance</field>
+            <field name="arch" type="xml">
+                <tree string="Assurances">
+                    <field name="type_assurance"/>
+                    <field name="document"/>
+                    <field name="description"/>
+                    <field name="date_etablissement"/>
+                    <field name="date_echeance"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_assurance_rentalizi" model="ir.actions.act_window">
+            <field name="name">Assurances</field>
+            <field name="res_model">rentalizi.assurance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="rentalizi_document_tree_view" model="ir.ui.view">
+            <field name="name">rentalizi.document.tree.view</field>
+            <field name="model">rentalizi.document</field>
+            <field name="arch" type="xml">
+                <tree string="Documents">
+                    <field name="type_document"/>
+                    <field name="fichier"/>
+                    <field name="description"/>
+                    <field name="partage"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_document_rentalizi" model="ir.actions.act_window">
+            <field name="name">Documents</field>
+            <field name="res_model">rentalizi.document</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
