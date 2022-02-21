@@ -55,12 +55,17 @@
                             </page>
                             <page string="Informations complémentaires">
                                 <group>
-                                    <field name="complements" widget="many2many_checkboxes"/>
+                                    <field name="complements"/>
                                 </group>
                             </page>
                             <page string="Lots">
                                 <group>
                                     <field name="lot_ids"/>
+                                </group>
+                            </page>
+                            <page string="Documents">
+                                <group>
+                                    <field name="document_ids"/>
                                 </group>
                             </page>
                         </notebook>

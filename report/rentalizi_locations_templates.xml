@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_locations">
+        <t t-foreach="docs" t-as="location">
+            <t t-call="web.html_container">
+                <div class = "header">
+                </div>
+                <div class="page">
+                    <h2 align="center">CONTRAT DE LOCATION OU COLOCATION</h2>
+                    <h3> I. DESIGNATION DES PARTIES</h3>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>LE BAILLEUR</h4>
+                    </div>
+                    <div>
+                        <p>Nom: <span t-field="user.name"></span></p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>LE(S) LOCATAIRE(S)</h4>
+                    </div>
+                    <div class="row">
+                        <table border="1" style="width:100%;" class="table">
+                            <tbody>
+                                <t t-set="locataires" t-value="location.mapped('locataires_ids')"/>
+                                <tr t-foreach="locataires" t-as="locataire">
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <span t-field="locataire.prenom_locataire"/> <span t-field="locataire.nom_locataire"/>
+                                                <span t-field="locataire.nom_societe"/>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h3> II. OBJET DU CONTRAT</h3>
+                        <p>Le présent contrat a pour objet la location d'un logement ainsi déterminé :</p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>A. CONSISTANCE DU LOGEMENT</h4>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Localisation: <b><span t-field="location.bien.adresse_id"/></b></li>
+                            <li>Lot: <span t-field="location.bien.nom"/></li>
+                            <li>Etage: <span t-field="location.bien.etage"/></li>
+                            <li>Numéro de porte: <span t-field="location.bien.numero"/></li>
+                            <li>Bâtiment: <span t-field="location.bien.batiment"/></li>
+                            <li>Escalier: <span t-field="location.bien.escalier"/></li>
+                            <li>Régime juridique de l'immeuble: <span t-field="location.bien.regime_juridique"/></li>
+                            <li>Année de constuction: <span t-field="location.bien.annee_construction"/></li>
+                            <li>Superficie: <span t-field="location.bien.superficie"/></li>
+                            <li>Nombre de pièces: <span t-field="location.bien.nbre_pieces"/></li>
+                            <li>Nombre de chambres: <span t-field="location.bien.nbre_chambres"/></li>
+                            <li>Salles de bain: <span t-field="location.bien.salles_bain"/></li>
+                            <li>Salles de bain: <span t-field="location.bien.salles_bain"/></li>
+                            <li>Modalité de production de chauffage: </li>
+                            <li>Modalité de production d'eau chaude sanitaire: </li>
+                        </ul>
+                    </div>
+                     <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>B. DESTINATION DES LOCAUX</h4>
+                    </div>
+                    <div>
+                        <p> Destination des locaux: <span t-field="location.utilisation"/></p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>C. ENUMERATION DES LOCAUX, PARTIES, EQUIPEMENTS ET ACCESSOIRES DE L'IMMEUBLE A USAGE COMMUN</h4>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><span t-field="location.bien.complements"/></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3> III. DATE DE PRISE D'EFFET ET DUREE DU CONTRAT</h3>
+                        <p>La durée du contrat et sa date de prise d'effet sont ainsi définies :</p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>A. DATE DE PRISE D'EFFET DU CONTRAT</h4>
+                    </div>
+                    <div>
+                        <p>Le présent contrat prend effet à partir du:  <b><span t-field="location.debut_bail"/></b>; pour une durée de: <b><span t-field="location.duree_bail"/></b> </p>
+                    </div>
+                    <div>
+                        <h3> IV. CONDITIONS FINANCIERES</h3>
+                        <p>Les parties conviennent des conditions financières suivantes :</p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>A. LOYER</h4>
+                    </div>
+                    <div>
+                        <h5>1. Fixation du loyer initial</h5>
+                        <p>a) Montant du loyer mensuel: <b><span t-field="location.loyer_hc"/></b></p>
+                        <p>b)  Modalités particulières de fixation initiale du loyer applicables dans certaines zones tendues:
+                            <ul>
+                                <li> Le loyer du logement objet du présent contrat est soumis au décret fixant annuellement le montant maximum d'évolution des loyers à la relocation : <b><span t-field="location.evolution_loyer_plafonnee_irl"/></b></li>
+                                <li> Le loyer du logement objet du présent contrat est soumis au loyer de référence majoré fixé par arrêté préfectoral :  <b><span t-field="location.loyer_majore_fixe_arrete_prefectoral"/></b></li>
+                                <li> Montant du loyer de référence : <b><span t-field="location.loyer_reference"/> €/m<sup>2</sup></b> </li>
+                                <li>Montant du loyer de référence majoré : <b><span t-field="location.loyer_majore"/> €/m<sup>2</sup></b> </li>
+                                <li>Montant du complément de loyer : <b><span t-field="location.complement_loyer"/> €</b> </li>
+                                <li>Caractéristiques justifiant le complément de loyer: <b><span t-field="location.description_complement"/></b> </li>
+                            </ul>
+                        </p>
+                        <p>c) Informations relatives au loyer du dernier locataire :
+                            <ul>
+                                <li>Montant du dernier loyer acquitté par le précédent locataire: <b><span t-field="location.dernier_loyer_applique"/>€</b></li>
+                                <li>Date de versement: <b><span t-field="location.date_versement"/></b></li>
+                                <li>Date de la dernière révision du loyer: <b><span t-field="location.derniere_revision"/></b></li>
+                            </ul>
+                        </p>
+                        <h5>2. Modalités de révision</h5>
+                        <p>a) Période de révision: <b><span t-field="location.periode_revision"/></b></p>
+                        <p>b) Date ou trimestre de référence de l'IRL: <b><span t-field="location.trimestre"/></b></p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>B. CHARGES RECUPERABLES</h4>
+                    </div>
+                    <div>
+                        <h5>1. Modalité de règlement des charges récupérables </h5>
+                        <p>Modalité de règlement des charges récupérables type_charges: <b><span t-field="location.type_charges"/></b></p>
+                        <h5>2. Montant des provisions sur charges</h5>
+                        <h5>3. Modalités de révision du forfait de charges</h5>
+                        <p>Les parties conviennent de la révision annuelle du forfait (il est révisé dans les mêmes conditions que le loyer principal): Oui/Non</p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>C. EN CAS  DE COLOCATION, SOUSCRIPTION PAR BAILLEUR D'UNE ASSURANCE POUR LE COMPTE DES COLOCATAIRES</h4>
+                    </div>
+                    <div>
+                        <p>En cas de colocation, souscription par le bailleur d'une assurance pour le compte des colocataires: Oui/Non</p>
+                        <p>a) Montant total annuel récupérable au titre de l'assurance pour compte des colocataires:.......</p>
+                        <p>b)  Montant récupérable par douzième : …………………………….…………………………</p>
+                    </div>
+                     <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>D. MODALITES DE PAIEMENT</h4>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Périodicité du paiement: <b><span t-field="location.paiement"/></b></li>
+                            <li>Date ou période de paiment: <b><span t-field="location.date_paiement"/></b></li>
+                            <li>paiement: A echoir/Terme echu</li>
+                            <li>Moyen de paiement: <b><span t-field="location.moyen_paiement"/></b></li>
+                            <li>Montant total dû à la première échéance de paiement pour une période complète de location:.........</li>
+                            <li>Loyer.....</li>
+                            <li>Charges récupérables:..............</li>
+                            <li>Contribution pour le partage des économies de charges:..............</li>
+                            <li>Assurance récupérable pour le compte des locataires (le cas échéant):..............</li>
+                            <li>Total:..............</li>
+                        </ul>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>E. MODALITES DE REEVALUATION D'UN LOYER MANIFESTEMENT SOUS EVALUE</h4>
+                    </div>
+                    <div>
+                        <b><p>Exclusivement lors d'un renouvellment de contrat</p></b>
+                        <h5>1. Montant de la hausse ou de la baisse de loyer mensuelle</h5>
+                        <h5>1. Modalité d'application annuelle de la hausse</h5>
+                        <p>Montant de la hausse ou de la baisse de loyer mensuelle: <b><span t-field="location.montant_hausse_mensuelle"/></b></p>
+                        <p>Modalités d'application annelle de la hausse: <b><span t-field="location.modalite_application_annuelle"/></b></p>
+                    </div>
+                    <div>
+                        <h3>V. TRAVAUX</h3>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>A. MONTANT ET NATURE DES TRAVAUX D'AMÉLIORATION OU DE MISE EN CONFORMITÉ AVEC LES CARACTÉRISTIQUES DE DÉCENCE EFFECTUÉS DEPUIS LA FIN DU DERNIER CONTRAT DE LOCATION OU DEPUIS LE DERNIER RENOUVELLEMENT</h4>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>B. MAJORATION DU LOYER EN COURS DE BAIL CONSÉCUTIVE À DES TRAVAUX D'AMÉLIORATION ENTREPRISES PAR LE BAILLEUR</h4>
+                    </div>
+                    <div>
+                        <p>
+                            <ul>
+                                <li>Nature des travaux: <b><span t-field="location.description_travaux_proprietaire"/></b></li>
+                                <li>Modalités d'exécution:................</li>
+                                <li>Délai de réalisation:................</li>
+                                <li>Montant de la majoration du loyer: <b><span t-field="location.montant_travaux_proprietaire"/></b></li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div style="background-color:#3894b2; color: #ffffff">
+                        <h4>C. DIMINUTION DE LOYER EN COURS DE BAIL CONSÉCUTIVE À DES TRAVAUX ENTREPRIS PAR LE LOCATAIRE</h4>
+                    </div>
+                    <div>
+                        <p>
+                            <ul>
+                                <li>Durée de cette diminution:.........</li>
+                                <li>Modalités de son dédommagement(en cas de départ anticipé du locataire et sur justification des dépenses effectuées): …………..</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div>
+                        <h3>VI. GARANTIES</h3>
+                        <p>Afin de garantir l'exécution de ses obligations, il est demandé au LOCATAIRE </p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

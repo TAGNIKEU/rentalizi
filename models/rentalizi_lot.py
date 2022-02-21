@@ -50,15 +50,14 @@ class Lot(models.Model):
     categorie_cadastrale = fields.Char(string="Catégorie cadastrale")
     valeur_locative = fields.Float(string="Valeur locative cadastrale")
     # les informations locatives
-    devise_id = fields.Many2one("res.currency", default=lambda self: self.env.ref('base.main_company').currency_id)
     type_location = fields.Selection([('meuble', 'Meublé'), ('vide', 'Vide'), ('saisonniere', 'Saisonnière')])
-    loyer_hc = fields.Monetary(string="Loyer HC", currency_field="devise_id")
-    charges = fields.Monetary(string="Charges", currency_field="devise_id")
+    loyer_hc = fields.Float(string="Loyer HC")
+    charges = fields.Float(string="Charges")
     # informations financières
-    taxe_habitation = fields.Monetary(string="Taxe d'habitation", currency_field="devise_id")
-    taxe_foncière = fields.Monetary(string="Taxe foncière", currency_field="devise_id")
-    prix_acquisition = fields.Monetary(string="Prix d'acquisition", currency_field="devise_id")
-    frais_acquisition = fields.Monetary(string="Frais d'acquisition", currency_field="devise_id")
+    taxe_habitation = fields.Float(string="Taxe d'habitation")
+    taxe_foncière = fields.Float(string="Taxe foncière")
+    prix_acquisition = fields.Float(string="Prix d'acquisition")
+    frais_acquisition = fields.Float(string="Frais d'acquisition")
     date_acquisition = fields.Date(string="Date d'acquisition")
     # Centre d'impôts
     nom_centre_impots = fields.Char(string="Nom du centre")

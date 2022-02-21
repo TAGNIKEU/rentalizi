@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from dateutil.relativedelta import relativedelta
 
 
 class Locations(models.Model):
@@ -20,11 +21,12 @@ class Locations(models.Model):
                                     ('residence_secondaire', 'Résidence secondaire du locataire'),
                                     ('exclusion', '''Le locataire est autorisé à exercer son activité professionnelle, 
                                     à l'exclusion, cependant, de toute activité commerciale, 
-                                    artisanale ou industrielle''')], string="Utilisation du bien", default="residence_principale")
+                                    artisanale ou industrielle''')], string="Utilisation du bien",
+                                   default="residence_principale")
     activite_exercee = fields.Char(string="Activité exercée dans les lieux")
     debut_bail = fields.Date(string="Début du bail", required=True)
     fin_bail = fields.Date(string="Fin du bail")
-    duree_bail = fields.Integer(string="Durée du bail")
+    duree_bail = fields.Char(string="Durée du bail", compute="_compute_duree_bail")
     # Renouvellement du bail par tacite reconduction
     renouvellement = fields.Boolean(string="Renouvellement?")
     # Fréquence de paiement du loyer
@@ -132,28 +134,35 @@ class Locations(models.Model):
     # Quittance
     loyer_prorata = fields.Boolean(string="Cocher la case en cas de premier loyer au prorata")
     date_fin_periode = fields.Date(string="La date de fin de période pour la 1ère quittance")
-    adresse_quittancement_autre = fields.Boolean(string="Cocher si l'adresse de quittancement est autre que l'adresse du bien loué")
+    adresse_quittancement_autre = fields.Boolean(string="Cocher si l'adresse de quittancement est autre que l'adresse "
+                                                        "du bien loué")
     adresse_quittancement = fields.Text(string="Adresse de quittancement")
-    titre_document = fields.Selection([('quittance', 'Quittance'), ('facture', 'Facture')], string="Titre du document", default="quittance")
+    titre_document = fields.Selection([('quittance', 'Quittance'), ('facture', 'Facture')],
+                                      string="Titre du document", default="quittance")
     numerotation = fields.Boolean(string="Numérotation")  # Activer / désactiver la numérotation automatique du document
-    avis_deuxieme_page = fields.Boolean(string="Avis en deuxième page")  # Générer l'avis d'échéance pour le mois suivant en deuxième page de la quittance du mois en cours.
-    texte_quittance = fields.Text(string="Texte pour la quittance")  # Texte à afficher automatiquement en bas de la Quittance
-    texte_avis_echeance = fields.Text(string="Texte pour l'avis d'échéance")  # Texte à afficher automatiquement en bas de l'Avis d'échéance
+    avis_deuxieme_page = fields.Boolean(string="Avis en deuxième page")  # Générer l'avis d'échéance pour le mois
+    # suivant en deuxième page de la quittance du mois en cours.
+    texte_quittance = fields.Text(string="Texte pour la quittance")  # Texte à afficher automatiquement en bas de la
+    # Quittance
+    texte_avis_echeance = fields.Text(string="Texte pour l'avis d'échéance")  # Texte à afficher automatiquement en
+    # bas de l'Avis d'échéance
     # Autres réglages
-    report_solde_locataire = fields.Selection([('manuel', 'Manuel'), ('automatique', 'Automatque')], string="Report du solde locataire", default="manuel")
-        # En cas de report Automatique, à chaque nouveau paiement de loyer généré dans la rubrique Finances le système modifiera l’échéance. Le montant sera augmenté/diminué par rapport à la somme reportée.
-    notification_quittance_dispo = fields.Boolean(string="Recevoir une notification dès que la Quittance / Avis est disponible en téléchargement")
-    notification_locataire_quittance = fields.Boolean(string="Notifier le(s) locataire(s) dès que la Quittance / Avis est disponible en téléchargement")
+    report_solde_locataire = fields.Selection([('manuel', 'Manuel'), ('automatique', 'Automatque')],
+                                              string="Report du solde locataire", default="manuel")
+    # En cas de report Automatique, à chaque nouveau paiement de loyer généré dans la rubrique Finances le
+    # système modifiera l’échéance. Le montant sera augmenté/diminué par rapport à la somme reportée.
+    notification_quittance_dispo = fields.Boolean(string="Recevoir une notification dès que la Quittance / Avis est "
+                                                         "disponible en téléchargement")
+    notification_locataire_quittance = fields.Boolean(string="Notifier le(s) locataire(s) dès que la Quittance / Avis "
+                                                             "est disponible en téléchargement")
     email_rappel = fields.Boolean(string="Envoyer un email de rappel 6 et 3 mois avant l’échéance du contrat")
-    notification_locataire_echeance = fields.Boolean(string="Notifier le(s) locataire(s) 3 mois avant l’échéance du contrat")
+    notification_locataire_echeance = fields.Boolean(string="Notifier le(s) locataire(s) 3 mois avant l’échéance du "
+                                                            "contrat")
+    partage = fields.Boolean(string="Partager le document avec votre locataire")
 
-
-
-
-
-
-
-
-
-
-
+    @api.depends('debut_bail', 'fin_bail')
+    def _compute_duree_bail(self):
+        for rec in self:
+            rec.duree_bail = {"Anée(s)": relativedelta(rec.fin_bail, rec.debut_bail).years,
+                              "Mois": relativedelta(rec.fin_bail, rec.debut_bail).months,
+                              "Jour(s)": relativedelta(rec.fin_bail, rec.debut_bail).days}

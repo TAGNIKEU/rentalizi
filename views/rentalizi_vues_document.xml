@@ -8,8 +8,24 @@
                     <field name="type_document"/>
                     <field name="fichier"/>
                     <field name="description"/>
-                    <field name="partage"/>
                 </tree>
+            </field>
+        </record>
+        <record id="rentalizi_document_form_view" model="ir.ui.view">
+            <field name="name">rentalizi.document.form.view</field>
+            <field name="model">rentalizi.document</field>
+            <field name="arch" type="xml">
+                <form string="Documents">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="type_document"/>
+                                <field name="fichier"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
             </field>
         </record>
         <record id="action_document_rentalizi" model="ir.actions.act_window">

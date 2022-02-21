@@ -213,7 +213,8 @@
                             </page>
                             <page string="Documents">
                                 <group>
-                                    <field name="document_ids" widget="selection"/>
+                                    <field name="document_ids"/>
+                                    <field name="partage"/>
                                 </group>
                             </page>
                         </notebook>

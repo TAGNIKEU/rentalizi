@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_report_locations" model="ir.actions.report">
+        <field name="name">Contrat de bail</field>
+        <field name="model">rentalizi.locations</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">rentalizi.report_locations</field>
+        <field name="report_file">rentalizi.report_locations</field>
+        <field name="print_report_name">'Location - %s' % (object.bien)</field>
+        <field name="binding_model_id" ref="model_rentalizi_locations"/>
+    </record>
+</odoo>
